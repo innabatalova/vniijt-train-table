@@ -1,0 +1,38 @@
+.MainTable {
+  width: 40%;
+  margin-bottom: 20px;
+  border: none;
+  border-collapse: separate;
+}
+
+.Title {
+  max-height: 100px;
+  font-family: 'Rubik';
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 2;
+  color: #2e7d32;
+}
+
+.HeadTitle {
+  padding: 2rem 3rem;
+  font-family: 'Rubik';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 0.5;
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  background: #EDEDED;
+  color: #9c27b0;
+
+  &:first-child {
+    border-left: 1px solid #ddd;
+    border-radius: 20px 0 0 0;
+  }
+
+  &:last-child {
+    border-right: 1px solid #ddd;
+    border-radius: 0 20px 0 0;
+  }
+}

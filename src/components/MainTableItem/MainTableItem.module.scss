@@ -1,0 +1,70 @@
+.MainTableItem {
+  border-bottom: 1px solid #d9d9d9;
+
+  &:nth-child(even) {
+    background: #F8F8F8;
+  }
+
+  &:last-child td.TitleName {
+    border-radius: 0 0 0 20px;
+  }
+
+  &:last-child td.TitleDescription {
+    border-radius: 0 0 20px 0;
+  }
+
+  &:focus,
+  &:hover,
+  &:active {
+    transform: scale(1.01);
+    transform-origin: 0 0;
+    color: #222222;
+    border-color: #aaaaaa;
+    box-shadow: 0 0 1px 3px #9c27b0;
+  }
+}
+
+.TitleName {
+  padding: 2rem 3rem;
+  vertical-align: top;
+  font-family: 'Rubik';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 0.5;
+  text-align: center;
+  border: none;
+  color: #9c27b0;
+  cursor: pointer;
+
+  &:first-child {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &:last-child {
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.TitleDescription {
+  padding: 2rem 3rem;
+  vertical-align: top;
+  font-family: 'Rubik';
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 0.5;
+  text-align: center;
+  border: none;
+  color: #9c27b0;
+  cursor: pointer;
+
+  &:first-child {
+    border-left: 1px solid #ddd;
+  }
+
+  &:last-child {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+}

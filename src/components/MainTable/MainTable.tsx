@@ -1,49 +1,34 @@
-import { FC, ReactElement, useState, useEffect, useCallback } from 'react'
+import { FC, ReactElement, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import MainTableItem from '../MainTableItem/MainTableItem'
 
-import axios from 'axios'
+import { fetchTrain } from '../../store/slices/trainSlice'
 
-import { headers } from '../../api/headers'
-import { baseApi } from '../../api/baseApi'
+import type { RootState, AppDispatch } from '../../store/store'
 
 import style from './MainTable.module.scss'
 
-interface TrainDataProps {
-  name: string;
-  description: string;
-  characteristics: Characteristic[];
+interface Characteristic {
+  speed: number,
+  force: number,
+  engineAmperage: number
 }
 
-interface Characteristic {
-  speed: number;
-  force: number;
-  engineAmperage: number;
+interface TrainDataProps {
+  name: string,
+  description: string,
+  characteristics: Characteristic[]
 }
 
 const MainTable: FC = (): ReactElement => {
-  const [trainData, setTrainData] = useState<TrainDataProps[] | []>([])
-
-  const getTrainData = useCallback<() => Promise<void>>(async () => {
-    try {
-      axios.get(baseApi, { headers })
-        .then(function (response) {
-          console.log(response)
-          const getTrainData = response.data
-          setTrainData(getTrainData)
-        })
-        .catch(function (error) {
-          console.error(error)
-        })
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }, []);
+  const dispatch = useDispatch<AppDispatch>()
+  const { status, train, error } = useSelector((state: RootState) => state.train)
 
   useEffect(() => {
-    getTrainData()
-  }, [getTrainData])
-
+    dispatch(fetchTrain())
+  }, [dispatch])
+  
   return (
     <table className={style.MainTable}>
       <caption className={style.Title}>Поезда</caption>
@@ -54,8 +39,10 @@ const MainTable: FC = (): ReactElement => {
         </tr>
       </thead>
       <tbody>
+        {status === 'pending' && <h2 className={style.Loading}>Загрузка...</h2>}
+        {error !== null ? <h2 className={style.ErrorData}>Произошла ошибка загрузки данных</h2> : <></>}
         {
-          trainData.map((item: any, index: number) => (
+          train.map((item: TrainDataProps, index: number) => (
             <MainTableItem key={index} name={item.name} description={item.description} />
           ))
         }

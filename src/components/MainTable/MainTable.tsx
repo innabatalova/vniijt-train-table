@@ -15,19 +15,32 @@ interface Characteristic {
   engineAmperage: number
 }
 
+interface CharacteristicItem {
+  name: string,
+  characteristics: Characteristic[]
+}
+
 interface TrainDataProps {
   name: string,
   description: string,
   characteristics: Characteristic[]
 }
 
-const MainTable: FC = (): ReactElement => {
+interface IProps {
+  activeItem: (item: CharacteristicItem) => void
+}
+
+const MainTable: FC<IProps> = ({ activeItem }): ReactElement => {
   const dispatch = useDispatch<AppDispatch>()
   const { status, train, error } = useSelector((state: RootState) => state.train)
 
   useEffect(() => {
     dispatch(fetchTrain())
   }, [dispatch])
+
+  const setItem = (item: CharacteristicItem) => {
+    activeItem(item)
+  }
   
   return (
     <table className={style.MainTable}>
@@ -39,11 +52,11 @@ const MainTable: FC = (): ReactElement => {
         </tr>
       </thead>
       <tbody>
-        {status === 'pending' && <h2 className={style.Loading}>Загрузка...</h2>}
-        {error !== null ? <h2 className={style.ErrorData}>Произошла ошибка загрузки данных</h2> : <></>}
+        {status === 'pending' && <tr><td className={style.Loading}>Загрузка...</td></tr>}
+        {error !== null ? <tr><td className={style.ErrorData}>Произошла ошибка загрузки данных</td></tr> : <></>}
         {
           train.map((item: TrainDataProps, index: number) => (
-            <MainTableItem key={index} name={item.name} description={item.description} />
+            <MainTableItem key={index} name={item.name} description={item.description} characteristics={item.characteristics} activeItem={setItem}/>
           ))
         }
       </tbody>

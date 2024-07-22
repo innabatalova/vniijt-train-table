@@ -1,0 +1,77 @@
+.CharacteristicTableItem {
+  border-bottom: 1px solid #d9d9d9;
+
+  &:nth-child(even) input{
+    background: #F8F8F8;
+    border-bottom: 1px solid #ddd;
+  }
+
+  &:last-child td.TitleSpeed input{
+    border-radius: 0 0 0 20px;
+  }
+
+  &:last-child td.TitleEngine input{
+    border-radius: 0 0 20px 0;
+  }
+
+  &:focus,
+  &:hover,
+  &:active {
+    transform: scale(1.01);
+    transform-origin: 0 0;
+    color: #222222;
+    border-color: #aaaaaa;
+    box-shadow: 0 0 1px 3px #9c27b0;
+  }
+}
+
+.TitleSpeed {
+  cursor: pointer;
+
+  & input {
+    vertical-align: top;
+    padding: 1rem;
+    font-family: 'Rubik';
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    color: #9c27b0;
+    border: none;
+    outline: none;
+  }
+}
+
+.TitleForce {
+  cursor: pointer;
+
+  & input {
+    vertical-align: top;
+    padding: 1rem;
+    font-family: 'Rubik';
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    color: #9c27b0;
+    border: none;
+    outline: none;
+  }
+}
+
+.TitleEngine {
+  cursor: pointer;
+
+  & input {
+    vertical-align: top;
+    padding: 1rem;
+    font-family: 'Rubik';
+    font-weight: 700;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    text-align: center;
+    color: #9c27b0;
+    border: none;
+    outline: none;
+  }
+}

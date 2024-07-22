@@ -1,19 +1,21 @@
 .App {
-  max-width: 85rem;
+  max-width: 85vw;
   margin: auto;
   text-align: center;
 }
 
 .Title {
-  margin-bottom: 0;
+  margin-bottom: 3rem;
   font-family: 'Rubik';
   font-weight: 700;
-  font-size: 42px;
-  line-height: 2;
+  font-size: 3rem;
+  line-height: 3.2rem;
   color: #0296d5;
   text-transform: uppercase;
 }
 
 .Wrap {
+  position: relative;
   display: flex;
+  justify-content: space-between;
 }

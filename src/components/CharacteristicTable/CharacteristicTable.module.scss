@@ -1,0 +1,71 @@
+.Form {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  top: 50px;
+  width: 60%;
+  height: fit-content;
+  padding-bottom: 100px;
+}
+
+.CharacteristicTable {
+  margin-bottom: 20px;
+  border: none;
+  border-collapse: separate;
+}
+
+.Title {
+  height: fit-content;
+  margin-bottom: 1rem;
+  font-family: 'Rubik';
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  color: #2e7d32;
+}
+
+.HeadTitle {
+  padding: 1rem 2rem;
+  font-family: 'Rubik';
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  background: #EDEDED;
+  color: #9c27b0;
+
+  &:first-child {
+    border-left: 1px solid #ddd;
+    border-radius: 20px 0 0 0;
+  }
+
+  &:last-child {
+    border-right: 1px solid #ddd;
+    border-radius: 0 20px 0 0;
+  }
+}
+
+.Button {
+  align-self: center;
+  min-height: 45px;
+  padding: .6rem 1.4rem;
+  font-family: Rubik;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  color: #0296d5;
+  border: 1px solid #0296d5;
+  border-radius: .5rem;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:active,
+  &:focus,
+  &:hover {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .702);
+    color: rgba(59, 153, 252, .702);
+  }
+}

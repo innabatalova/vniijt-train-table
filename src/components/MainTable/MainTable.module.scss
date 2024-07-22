@@ -1,16 +1,17 @@
 .MainTable {
-  width: 40%;
+  width: 30%;
   margin-bottom: 20px;
   border: none;
   border-collapse: separate;
 }
 
 .Title {
+  margin-bottom: 1rem;
   max-height: 100px;
   font-family: 'Rubik';
   font-weight: 700;
-  font-size: 42px;
-  line-height: 2;
+  font-size: 2rem;
+  line-height: 2.2rem;
   color: #2e7d32;
 }
 
@@ -18,8 +19,8 @@
   padding: 2rem 3rem;
   font-family: 'Rubik';
   font-weight: 700;
-  font-size: 20px;
-  line-height: 0.5;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   text-align: center;
   border: none;
   border-top: 1px solid #ddd;
@@ -40,15 +41,15 @@
 .Loading {
   font-family: 'Rubik';
   font-weight: 700;
-  font-size: 20px;
-  line-height: 23px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   color: #9c27b0;
 }
 
 .ErrorData {
   font-family: 'Rubik';
   font-weight: 700;
-  font-size: 20px;
-  line-height: 23px;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   color: #ff0000;
 }

@@ -7,10 +7,12 @@
   }
 
   &:last-child td.TitleSpeed input{
+    width: 100%;
     border-radius: 0 0 0 20px;
   }
 
   &:last-child td.TitleEngine input{
+    width: 100%;
     border-radius: 0 0 20px 0;
   }
 
@@ -46,6 +48,7 @@
   cursor: pointer;
 
   & input {
+    width: 100%;
     vertical-align: top;
     padding: 1rem;
     font-family: 'Rubik';

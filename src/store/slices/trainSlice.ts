@@ -66,8 +66,6 @@ const trainSlice = createSlice({
   },
 })
 
-//export const { getTrainData } = trainSlice.actions
-
 export default trainSlice.reducer
 
 

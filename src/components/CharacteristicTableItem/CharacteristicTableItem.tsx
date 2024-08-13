@@ -10,7 +10,7 @@ interface ICharacteristic {
 }
 
 interface IProps {
-  characteristic: any,
+  characteristic: ICharacteristic,
   characteristicIndex: number
 }
 

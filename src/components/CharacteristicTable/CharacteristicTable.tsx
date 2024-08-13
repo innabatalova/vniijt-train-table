@@ -34,22 +34,17 @@ const CharacteristicTable: FC<IPropsCharacteristic> = ({ title, characteristics 
   }, [characteristics])
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data)
+    const { characteristic } = data
+    const unsortTrain: number[] = []
+
+    characteristic.forEach((item: Characteristic) => {
+      unsortTrain.push(item.speed)
+    })
+    const sortTrain = unsortTrain.sort((a, b) => {
+      return a - b
+    })
+    console.log(sortTrain)
   }
-
-  // const sendForm = (event: FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-
-  //   const unsortTrain: number[] = []
-
-  //   characteristics.forEach((item: Characteristic) => {
-  //     unsortTrain.push(item.speed)
-  //   })
-  //   const sortTrain = unsortTrain.sort(function (a, b) {
-  //     return a - b
-  //   })
-  //   console.log(sortTrain)
-  // }
 
   return (
     <FormProvider {...methods}>
@@ -64,7 +59,7 @@ const CharacteristicTable: FC<IPropsCharacteristic> = ({ title, characteristics 
             </tr>
           </thead>
           <tbody>
-            {fields.map((characteristic, index) => (
+            {fields.map((characteristic: any, index: number) => (
               <CharacteristicTableItem key={characteristic.id}
                 characteristic={characteristic}
                 characteristicIndex={index}

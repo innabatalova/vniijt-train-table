@@ -1,58 +1,78 @@
-import { ChangeEvent, FC, ReactElement, useEffect, useState } from 'react'
+import { FC, ReactElement, useEffect, useState } from 'react'
+import { Controller, useFormContext } from "react-hook-form"
 
 import style from './CharacteristicTableItem.module.scss'
 
-interface IProps {
+interface ICharacteristic {
   speed: number,
   force: number,
   engineAmperage: number
 }
 
-const CharacteristicTableItem: FC<IProps> = ({ speed, force, engineAmperage }): ReactElement => {
-  const [state, setState] = useState<IProps>({ speed, force, engineAmperage })
+interface IProps {
+  characteristic: any,
+  characteristicIndex: number
+}
+
+const CharacteristicTableItem: FC<IProps> = ({ characteristic, characteristicIndex }): ReactElement => {
+  const { speed, force, engineAmperage } = characteristic
+  const [state, setState] = useState<ICharacteristic>({ speed, force, engineAmperage })
+  const { register, getFieldState, formState: { errors } } = useFormContext()
 
   useEffect(() => {
     setState({ speed, force, engineAmperage })
   }, [speed, force, engineAmperage])
 
-  const changeValue = (event: ChangeEvent<HTMLInputElement>) => {
-    switch (event.target.dataset.attr) {
-      case 'speed':
-        setState({
-          speed: Number(event.target.value),
-          force,
-          engineAmperage
-        })
-        break
-      case 'force':
-        setState({
-          speed,
-          force: Number(event.target.value),
-          engineAmperage
-        })
-        break
-      case 'engineAmperage':
-        setState({
-          speed,
-          force,
-          engineAmperage: Number(event.target.value)
-        })
-        break
-      default:
-        break
-    }
-  }
-
   return (
     <tr className={style.CharacteristicTableItem} >
-      <td className={style.TitleSpeed}>
-        <input type="text" value={state.speed} onChange={changeValue} data-attr='speed' />
+      <td className={errors.characteristic &&
+        (getFieldState(`characteristic[${characteristicIndex}].speed`)).error?.ref?.name === `characteristic[${characteristicIndex}].speed`
+        ? style.FieldError + ' ' + style.TitleSpeed : style.TitleSpeed}>
+        <Controller
+          name={`characteristic[${characteristicIndex}].speed`}
+          render={({ field: { value = state.speed } }) => (
+            <input type="text" value={value}
+              {...register(`characteristic[${characteristicIndex}].speed` as const, {
+                pattern: /^\d+$/i, required: true
+              })} />
+          )}
+        />
+        {errors.characteristic &&
+          (getFieldState(`characteristic[${characteristicIndex}].speed`)).error?.ref?.name === `characteristic[${characteristicIndex}].speed`
+          && <p className={style.Error}>Скорость должна быть неотрицательным целым числом!</p>}
+
       </td>
-      <td className={style.TitleForce}>
-        <input type="text" value={state.force} onChange={changeValue} data-attr='force' />
+      <td className={errors.characteristic &&
+        (getFieldState(`characteristic[${characteristicIndex}].force`)).error?.ref?.name === `characteristic[${characteristicIndex}].force`
+        ? style.FieldError + ' ' + style.TitleForce : style.TitleForce}>
+        <Controller
+          name={`characteristic[${characteristicIndex}].force`}
+          render={({ field: { value = state.force } }) => (
+            <input type="text" value={value}
+              {...register(`characteristic[${characteristicIndex}].force` as const, {
+                pattern: /^[0-9]*[.,][0-9]+$/i, required: true
+              })} />
+          )}
+        />
+        {errors.characteristic &&
+          (getFieldState(`characteristic[${characteristicIndex}].force`)).error?.ref?.name === `characteristic[${characteristicIndex}].force`
+          && <p className={style.Error}>Сила тяги должна быть положительным числом с плавающей запятой!</p>}
       </td>
-      <td className={style.TitleEngine}>
-        <input type="text" value={state.engineAmperage} onChange={changeValue} data-attr='engineAmperage' />
+      <td className={errors.characteristic &&
+        (getFieldState(`characteristic[${characteristicIndex}].engineAmperage`)).error?.ref?.name === `characteristic[${characteristicIndex}].engineAmperage`
+        ? style.FieldError + ' ' + style.TitleEngine : style.TitleEngine}>
+        <Controller
+          name={`characteristic[${characteristicIndex}].engineAmperage`}
+          render={({ field: { value = state.engineAmperage } }) => (
+            <input type="text" value={value}
+              {...register(`characteristic[${characteristicIndex}].engineAmperage` as const, {
+                pattern: /^[1-9]\d*$/i, required: true
+              })} />
+          )}
+        />
+        {errors.characteristic &&
+          (getFieldState(`characteristic[${characteristicIndex}].engineAmperage`)).error?.ref?.name === `characteristic[${characteristicIndex}].engineAmperage`
+          && <p className={style.Error}>Ток двигателя должен быть положительным целым числом!</p>}
       </td>
     </tr>
   )

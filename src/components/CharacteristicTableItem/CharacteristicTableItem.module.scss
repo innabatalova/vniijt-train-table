@@ -1,17 +1,17 @@
 .CharacteristicTableItem {
   border-bottom: 1px solid #d9d9d9;
 
-  &:nth-child(even) input{
+  &:nth-child(even) input {
     background: #F8F8F8;
     border-bottom: 1px solid #ddd;
   }
 
-  &:last-child td.TitleSpeed input{
+  &:last-child td.TitleSpeed input {
     width: 100%;
     border-radius: 0 0 0 20px;
   }
 
-  &:last-child td.TitleEngine input{
+  &:last-child td.TitleEngine input {
     width: 100%;
     border-radius: 0 0 20px 0;
   }
@@ -19,15 +19,12 @@
   &:focus,
   &:hover,
   &:active {
-    transform: scale(1.01);
-    transform-origin: 0 0;
-    color: #222222;
-    border-color: #aaaaaa;
     box-shadow: 0 0 1px 3px #9c27b0;
   }
 }
 
 .TitleSpeed {
+  position: relative;
   cursor: pointer;
 
   & input {
@@ -45,6 +42,7 @@
 }
 
 .TitleForce {
+  position: relative;
   cursor: pointer;
 
   & input {
@@ -63,6 +61,7 @@
 }
 
 .TitleEngine {
+  position: relative;
   cursor: pointer;
 
   & input {
@@ -77,4 +76,23 @@
     border: none;
     outline: none;
   }
+}
+
+.Error {
+  position: absolute;
+  top: 105%;
+  padding-left: 10%;
+  margin: 0;
+  font-size: .6rem;
+  color: #fd0000;
+  z-index: 5;
+}
+
+.FieldError {
+
+  & input {
+    color: #fd0000;
+    box-shadow: 0 0 1px 1.5px #fd0000;
+  }
+
 }

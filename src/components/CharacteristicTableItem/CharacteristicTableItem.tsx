@@ -1,5 +1,9 @@
 import { FC, ReactElement, useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Controller, useFormContext } from "react-hook-form"
+
+import { RootState } from '../../store/store'
+import { disabledButton, unDisabledButton } from '../../store/slices/errorSlice'
 
 import style from './CharacteristicTableItem.module.scss'
 
@@ -15,6 +19,9 @@ interface IProps {
 }
 
 const CharacteristicTableItem: FC<IProps> = ({ characteristic, characteristicIndex }): ReactElement => {
+  const errorState = useSelector((state: RootState) => state.error.errorState)
+  const dispatch = useDispatch()
+
   const { speed, force, engineAmperage } = characteristic
   const [state, setState] = useState<ICharacteristic>({ speed, force, engineAmperage })
   const { register, getFieldState, formState: { errors } } = useFormContext()
@@ -22,6 +29,10 @@ const CharacteristicTableItem: FC<IProps> = ({ characteristic, characteristicInd
   useEffect(() => {
     setState({ speed, force, engineAmperage })
   }, [speed, force, engineAmperage])
+
+  useEffect(() => {
+    errors.characteristic !== undefined ? dispatch(disabledButton()) : dispatch(unDisabledButton())
+  }, [errors.characteristic])
 
   return (
     <tr className={style.CharacteristicTableItem} >

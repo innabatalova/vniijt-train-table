@@ -1,7 +1,9 @@
 import { FC, ReactElement, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { FormProvider, useFieldArray, useForm, SubmitHandler, FieldValues } from "react-hook-form"
 
 import CharacteristicTableItem from '../CharacteristicTableItem/CharacteristicTableItem'
+import { RootState } from '../../store/store'
 
 import style from './CharacteristicTable.module.scss'
 
@@ -17,6 +19,8 @@ interface IPropsCharacteristic {
 }
 
 const CharacteristicTable: FC<IPropsCharacteristic> = ({ title, characteristics }): ReactElement => {
+  const errorState = useSelector((state: RootState) => state.error.errorState)
+
   const methods = useForm({
     mode: "onChange"
   })
@@ -67,7 +71,7 @@ const CharacteristicTable: FC<IPropsCharacteristic> = ({ title, characteristics 
             ))}
           </tbody>
         </table>
-        <button className={style.Button}>Отправить</button>
+        <button className={style.Button} disabled={errorState}>Отправить</button>
       </form>
     </FormProvider>
   )

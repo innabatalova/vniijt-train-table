@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import trainReducer from './slices/trainSlice'
+import errorSlice from './slices/errorSlice'
 
 const store =  configureStore({
   reducer: {
-    train: trainReducer
+    train: trainReducer,
+    error: errorSlice
   }
 })
 

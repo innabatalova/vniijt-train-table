@@ -3,18 +3,9 @@ import { FC, ReactElement, useState } from 'react'
 import MainTable from './components/MainTable/MainTable'
 import CharacteristicTable from './components/CharacteristicTable/CharacteristicTable'
 
+import { CharacteristicItem } from './interfaces'
+
 import style from './App.module.scss'
-
-interface Characteristic {
-  speed: number,
-  force: number,
-  engineAmperage: number
-}
-
-interface CharacteristicItem {
-  name: string,
-  characteristics: Characteristic[]
-}
 
 const App: FC = (): ReactElement => {
   const [activeCharacteristic, setActiveCharacteristic] = useState<CharacteristicItem | null>(null)

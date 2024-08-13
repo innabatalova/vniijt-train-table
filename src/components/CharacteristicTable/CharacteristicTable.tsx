@@ -1,22 +1,14 @@
 import { FC, ReactElement, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { FormProvider, useFieldArray, useForm, SubmitHandler, FieldValues } from "react-hook-form"
 
 import CharacteristicTableItem from '../CharacteristicTableItem/CharacteristicTableItem'
 import { RootState } from '../../store/store'
 
+import { Characteristic } from '../../interfaces'
+import { IPropsCharacteristic } from './interfaces'
+
 import style from './CharacteristicTable.module.scss'
-
-interface Characteristic {
-  speed: number,
-  force: number,
-  engineAmperage: number
-}
-
-interface IPropsCharacteristic {
-  title: string,
-  characteristics: Characteristic[]
-}
 
 const CharacteristicTable: FC<IPropsCharacteristic> = ({ title, characteristics }): ReactElement => {
   const errorState = useSelector((state: RootState) => state.error.errorState)

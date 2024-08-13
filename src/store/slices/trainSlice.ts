@@ -1,25 +1,9 @@
 import { createSlice, createAsyncThunk, ActionReducerMapBuilder, PayloadAction } from '@reduxjs/toolkit'
 import axiosTrainData from '../../api/trainApi'
 
+import { IInitialState, TrainDataProps } from './interfaces'
+
 import { AxiosError } from 'axios'
-
-interface Characteristic {
-  speed: number,
-  force: number,
-  engineAmperage: number
-}
-
-interface TrainDataProps {
-  name: string,
-  description: string,
-  characteristics: Characteristic[]
-}
-
-interface IInitialState {
-  train: TrainDataProps[],
-  status: 'pending' | 'fulfilled' | 'rejected' | null,
-  error: unknown | null
-}
 
 const initialState: IInitialState = {
   status: null,
@@ -29,11 +13,11 @@ const initialState: IInitialState = {
 
 export const fetchTrain = createAsyncThunk(
   'train/fetchTrain',
-  async function (_, {rejectWithValue}) {
+  async function (_, { rejectWithValue }) {
     try {
       const response = await axiosTrainData()
 
-      if (response.status !== 200){
+      if (response.status !== 200) {
         throw new Error('Server error!')
       }
 

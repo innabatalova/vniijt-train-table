@@ -7,28 +7,9 @@ import { fetchTrain } from '../../store/slices/trainSlice'
 
 import type { RootState, AppDispatch } from '../../store/store'
 
+import { IProps, TrainDataProps, CharacteristicItem } from './interfaces'
+
 import style from './MainTable.module.scss'
-
-interface Characteristic {
-  speed: number,
-  force: number,
-  engineAmperage: number
-}
-
-interface CharacteristicItem {
-  name: string,
-  characteristics: Characteristic[]
-}
-
-interface TrainDataProps {
-  name: string,
-  description: string,
-  characteristics: Characteristic[]
-}
-
-interface IProps {
-  activeItem: (item: CharacteristicItem) => void
-}
 
 const MainTable: FC<IProps> = ({ activeItem }): ReactElement => {
   const dispatch = useDispatch<AppDispatch>()
@@ -41,7 +22,7 @@ const MainTable: FC<IProps> = ({ activeItem }): ReactElement => {
   const setItem = (item: CharacteristicItem) => {
     activeItem(item)
   }
-  
+
   return (
     <table className={style.MainTable}>
       <caption className={style.Title}>Поезда</caption>
@@ -56,7 +37,7 @@ const MainTable: FC<IProps> = ({ activeItem }): ReactElement => {
         {error !== null ? <tr><td className={style.ErrorData}>Произошла ошибка загрузки данных</td></tr> : <></>}
         {
           train.map((item: TrainDataProps, index: number) => (
-            <MainTableItem key={index} name={item.name} description={item.description} characteristics={item.characteristics} activeItem={setItem}/>
+            <MainTableItem key={index} name={item.name} description={item.description} characteristics={item.characteristics} activeItem={setItem} />
           ))
         }
       </tbody>

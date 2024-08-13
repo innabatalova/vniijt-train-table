@@ -5,25 +5,17 @@ import { Controller, useFormContext } from "react-hook-form"
 import { RootState } from '../../store/store'
 import { disabledButton, unDisabledButton } from '../../store/slices/errorSlice'
 
+import { Characteristic } from '../../interfaces'
+import { IProps } from './interfaces'
+
 import style from './CharacteristicTableItem.module.scss'
-
-interface ICharacteristic {
-  speed: number,
-  force: number,
-  engineAmperage: number
-}
-
-interface IProps {
-  characteristic: ICharacteristic,
-  characteristicIndex: number
-}
 
 const CharacteristicTableItem: FC<IProps> = ({ characteristic, characteristicIndex }): ReactElement => {
   const errorState = useSelector((state: RootState) => state.error.errorState)
   const dispatch = useDispatch()
 
   const { speed, force, engineAmperage } = characteristic
-  const [state, setState] = useState<ICharacteristic>({ speed, force, engineAmperage })
+  const [state, setState] = useState<Characteristic>({ speed, force, engineAmperage })
   const { register, getFieldState, formState: { errors } } = useFormContext()
 
   useEffect(() => {
